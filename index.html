@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download HereHear Wellness</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      max-width: 360px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    }
+    h1 { font-size: 1.3rem; font-weight: 700; color: #111; margin-bottom: 0.5rem; }
+    p { color: #777; font-size: 0.9rem; margin-bottom: 2rem; }
+    .links { display: flex; flex-direction: column; gap: 12px; }
+    .btn {
+      display: block;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-ios { background: #000; }
+    .btn-android { background: #1a73e8; }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <h1>Opening the app store&hellip;</h1>
+    <p>Please wait while we redirect you.</p>
+  </div>
+
+  <script>
+    var IOS_URL     = 'https://apps.apple.com/tw/app/herehear-wellness/id6472772767';
+    var ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.BambooTechnology.HereHearaAndroid&pcampaignid=web_share';
+
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+
+    function isAndroid() {
+      return /android/i.test(navigator.userAgent);
+    }
+
+    function showFallback() {
+      document.getElementById('card').innerHTML =
+        '<h1>Download HereHear Wellness</h1>' +
+        '<p>Choose your platform below</p>' +
+        '<div class="links">' +
+          '<a class="btn btn-ios"     href="' + IOS_URL     + '">Download on App Store</a>' +
+          '<a class="btn btn-android" href="' + ANDROID_URL + '">Get it on Google Play</a>' +
+        '</div>';
+    }
+
+    if (isIOS()) {
+      window.location.replace(IOS_URL);
+    } else if (isAndroid()) {
+      window.location.replace(ANDROID_URL);
+    } else {
+      showFallback();
+    }
+  </script>
+</body>
+</html>
